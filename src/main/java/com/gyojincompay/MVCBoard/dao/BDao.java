@@ -209,6 +209,39 @@ public class BDao {
 		}		
 		
 	}
+
+	public void delete(String bid) {
+		// TODO Auto-generated method stub
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;		
+		
+		try {
+			conn = dataSource.getConnection();
+			String query = "delete from mvc_board where bid=?";
+			pstmt = conn.prepareStatement(query);			
+			
+			pstmt.setString(1, bid);
+			
+			pstmt.executeUpdate();//데이터 삽입에 성공하면 1이 반환
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
+		
+	}
 	
 	
 	
