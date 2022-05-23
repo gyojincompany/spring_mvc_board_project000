@@ -11,6 +11,8 @@ import com.gyojincompay.MVCBoard.command.BContentCommand;
 import com.gyojincompay.MVCBoard.command.BDeleteCommand;
 import com.gyojincompay.MVCBoard.command.BListCommand;
 import com.gyojincompay.MVCBoard.command.BModifyCommand;
+import com.gyojincompay.MVCBoard.command.BReplayCommand;
+import com.gyojincompay.MVCBoard.command.BReplyViewCommand;
 import com.gyojincompay.MVCBoard.command.BWriteCommand;
 
 @Controller
@@ -93,6 +95,29 @@ public class BController {
 		command.excute(model);		
 		
 		return "redirect:list";
+	}
+	
+	@RequestMapping("/reply_view")
+	public String reply_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyViewCommand();
+		command.excute(model);		
+		
+		return "reply_view";
+	}
+	
+	@RequestMapping("/reply")
+	public String reply(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplayCommand();
+		command.excute(model);
+		
+		return "redirect:list";		
+		
 	}
 	
 }
