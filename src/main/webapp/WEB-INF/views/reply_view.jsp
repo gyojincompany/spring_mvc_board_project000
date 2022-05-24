@@ -24,7 +24,7 @@
 			</tr>	
 			<tr>
 				<td>글제목</td>
-				<td><input type="text" name="btitle" size="60" value="[덧글] ${reply_view.btitle }"></td>
+				<td><input type="text" name="btitle" size="60" value="[답변] ${reply_view.btitle }"></td>
 			</tr>
 			<tr>
 				<td>글내용</td>

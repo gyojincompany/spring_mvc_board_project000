@@ -337,6 +337,8 @@ public class BDao {
 			String bindent) {
 		// TODO Auto-generated method stub
 		
+		replay_sort(bgroup, bstep);
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;		
 		
@@ -371,6 +373,45 @@ public class BDao {
 		}	
 		
 	}
+	
+	public void replay_sort(String cgroup, String cstep) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;		
+		
+		try {
+			conn = dataSource.getConnection();
+			String query = "UPDATE mvc_board SET bstep=bstep+1 WHERE bgroup=? and bstep>?";
+			pstmt = conn.prepareStatement(query);			
+			
+			pstmt.setString(1, cgroup);
+			pstmt.setString(2, cstep);
+			
+			pstmt.executeUpdate();//데이터 삽입에 성공하면 1이 반환
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {				
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
